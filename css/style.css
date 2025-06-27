@@ -1,0 +1,1137 @@
+:root {
+  --primary-color: #a78b4f;      /* Gold from Logo */
+  --secondary-color: #0a192f;    /* Deep Navy from Hero Sky */
+  --accent-color: #3d5a49;       /* Muted Green from Hero Grass */
+  --light-bg: #f9f7f2;           /* Creamy Off-White */
+  --dark-bg: #0a192f;            /* Deep Navy Background */
+  --text-color-dark: #0a192f;    /* Text for light backgrounds */
+  --text-color-light: #f9f7f2;   /* Text for dark backgrounds */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.7;
+    color: var(--text-color-dark);
+    background-color: var(--light-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 900;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.navbar {
+    background: var(--dark-bg);
+    color: var(--text-color-light);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: padding 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar.scrolled {
+    padding: 0.8rem 0;
+}
+
+.navbar .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative; /* Needed for absolute positioning of social icons */
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    transition: height 0.3s ease;
+    mix-blend-mode: screen; /* Blends the logo with the background */
+}
+
+.navbar.scrolled .logo img {
+    height: 40px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center; /* Vertically align nav items and icons */
+}
+
+.nav-links a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.header-social-icons {
+    display: flex; /* Display icons by default */
+    align-items: center;
+    gap: 18px;
+    margin-left: 20px; /* Space between 'Contact' and icons */
+}
+
+.header-social-icons a {
+    color: var(--text-color-light);
+    font-size: 1.4rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.header-social-icons a:hover {
+    color: var(--primary-color);
+    transform: scale(1.15);
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color-light);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+main {
+    padding-top: 85px; /* Adjust for fixed navbar height */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hide nav links on mobile */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background: var(--dark-bg);
+        padding: 20px 0;
+    }
+
+    .nav-links.active {
+        display: flex; /* Show when hamburger is clicked */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    .header-social-icons {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        margin-left: 0; /* Reset margin for absolute positioning */
+    }
+
+    .navbar .container {
+        justify-content: space-between;
+    }
+
+    /* This combines all mobile button stacking rules for consistency */
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        max-width: 350px; /* Constrain the button container width */
+        margin: 0 auto; /* Center the container */
+    }
+
+    .hero-buttons .btn {
+        width: 100%; /* Make buttons fill the container */
+        box-sizing: border-box;
+    }
+
+    /* This rule specifically targets the index page's second button */
+    .hero-section .btn-secondary {
+        margin-left: 0;
+    }
+}
+
+.hero-section {
+    background: url('../images/hero_about1.png') no-repeat center center/cover;
+    text-align: center;
+    color: var(--light-text);
+    position: relative;
+    padding: 5rem 20px;
+    box-sizing: border-box;
+    display: flow-root; /* The modern way to create a BFC and contain all children */
+}
+
+.page-content {
+    padding: 4rem 20px;
+    background: var(--light-bg);
+    position: relative; /* Creates a stacking context */
+    z-index: 1;         /* Ensures it renders above the hero overlay */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(26, 26, 26, 0.8), transparent 50%);
+    z-index: 1; /* Ensure overlay is behind the content */
+}
+
+section#hero {
+    background-image: url('../images/hero1.png');
+    padding: 5rem 20px; /* Use padding to control height */
+    min-height: 90vh; /* Keep for the home page */
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2; /* This ensures the hero content is above the ::before pseudo-element */
+}
+
+.hero-section h1 {
+    font-size: 4.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color-light);
+    font-weight: 900;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero-section p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    color: var(--text-color-light);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 2rem;
+}
+
+.scroll-down i {
+    animation: bounce-light 2s infinite;
+}
+
+@keyframes bounce-light {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 35px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--text-color-dark);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-primary:hover {
+    background: #a4884f; /* Darker gold */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-color-dark);
+    border-color: var(--text-color-dark);
+}
+
+.btn-secondary:hover {
+    background: var(--text-color-dark);
+    color: var(--light-bg);
+}
+
+.hero-section .btn-secondary {
+    color: var(--text-color-light);
+    border-color: var(--text-color-light);
+    margin-left: 1rem; /* Adds spacing between the two hero buttons */
+}
+
+.hero-section .btn-secondary:hover {
+    background: var(--text-color-light);
+    color: var(--text-color-dark);
+}
+
+.content-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.content-section.bg-dark {
+    background-color: var(--dark-bg);
+    color: var(--text-color-light);
+}
+
+.content-section.bg-dark h2 {
+    color: var(--text-color-light);
+}
+
+.content-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.section-subtitle {
+    max-width: 700px;
+    margin: 0 auto 3.5rem auto;
+    color: var(--text-color-dark);
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* Card styles for News and Teams */
+.card {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    color: var(--text-color-dark);
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.card h4 {
+    color: var(--text-color-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.card p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color-dark);
+}
+
+.card .read-more {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Grid Layouts */
+.news-grid, .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* FAQ Section */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.faq-question {
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 20px 0;
+    position: relative;
+    color: var(--primary-color);
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    font-family: inherit;
+}
+
+.faq-question:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.faq-question::after {
+    content: '\f078'; /* Font Awesome down arrow */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question::after {
+    transform: rotate(-180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.faq-answer p,
+.faq-answer ol {
+    margin-bottom: 15px;
+}
+
+.faq-answer ol {
+    padding-left: 20px;
+}
+
+.faq-answer a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    text-align: left;
+}
+
+.about-text {
+    flex: 2;
+}
+
+.about-image {
+    flex: 1;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Animation and Accessibility */
+.anim-slide-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.anim-slide-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.cta-section {
+    padding: 100px 0;
+    text-align: center;
+    color: var(--text-color-light);
+    position: relative;
+    background-color: var(--dark-bg);
+}
+
+#join {
+    background-color: var(--dark-bg);
+}
+
+.cta-section h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.cta-inner {
+    background: var(--dark-bg);
+    padding: 3rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.join-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.join-info p {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.join-info i {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    text-align: left;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: 1rem;
+    background: #fff;
+    color: var(--text-color-dark);
+}
+
+.contact-form button {
+    align-self: flex-start;
+    border: none;
+    cursor: pointer;
+}
+
+.contact-info h3 {
+    color: var(--text-color-dark);
+    margin-bottom: 1rem;
+}
+
+.contact-info p {
+    margin-bottom: 1rem;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.social-links-contact a {
+    color: var(--text-color-dark);
+    margin-right: 15px;
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+}
+
+.social-links-contact a:hover {
+    color: var(--primary-color);
+}
+
+.contact-details a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* Facebook Feed */
+.facebook-feed {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.facebook-feed h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary-color);
+}
+
+/* Registration Process Section */
+.registration-process{
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.registration-process h2 {
+    margin-bottom: 40px;
+}
+
+.player-category {
+    text-align: left;
+    margin-bottom: 40px;
+    max-width: 800px; /* To improve readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.player-category h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.player-category ol {
+    list-style-position: outside; /* Better alignment */
+    padding-left: 20px;
+}
+
+.player-category li {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.player-category li strong {
+    color: var(--primary-color);
+}
+
+.player-category a {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.footer {
+    background: var(--dark-bg);
+    color: var(--text-color-light);
+    padding: 4rem 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-column h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-column p {
+    opacity: 0.8;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-column ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(249, 247, 242, 0.1);
+}
+
+.footer-bottom p {
+    margin: 0;
+    opacity: 0.7;
+}
+
+.footer-bottom .social-links a {
+    color: var(--text-color-light);
+    margin-left: 15px;
+    font-size: 1.4rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.footer-bottom .social-links a:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+.contact-list-footer li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+}
+
+.contact-list-footer i {
+    margin-right: 10px;
+    margin-top: 5px;
+    width: 20px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.contact-list-footer a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.contact-list-footer a:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+/* =============================================
+   PAGE-SPECIFIC STYLES
+   ============================================= */
+
+/* Join Us Page Styles */
+.join-pathway {
+    display: flex;
+    gap: 2rem;
+    margin: 3rem 0;
+    flex-wrap: wrap; /* Allows cards to stack on smaller screens */
+}
+
+.pathway-option {
+    flex: 1 1 320px; /* Flex-grow, flex-shrink, and basis */
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.pathway-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+.pathway-option h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.pathway-option p {
+    line-height: 1.6;
+}
+
+.pathway-option ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+}
+
+.pathway-option ul li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start; /* Aligns items to the top */
+}
+
+.pathway-option ul li i {
+    color: var(--secondary-color);
+    margin-right: 12px;
+    font-size: 1.2rem;
+    margin-top: 5px; /* Aligns icon nicely with text */
+}
+
+.cta-section {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2.5rem;
+    background: var(--light-bg);
+    border-radius: 8px;
+}
+
+.cta-section h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+/* Utility Classes from new content */
+.text-center {
+    text-align: center;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2.5rem;
+    color: #555;
+}
+
+/* About Us Page Styles */
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.feature-item i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.feature-item h3 {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+/* News Page Styles */
+.news-date {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #777;
+    margin-bottom: 1rem; /* Increased margin for better spacing */
+}
+
+/* Contact Page Styles */
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.contact-list li i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+.contact-list li a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.contact-list li a:hover {
+    text-decoration: underline;
+}
+
+/* Single-item grid for Teams page */
+.team-grid-single {
+    display: grid;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.team-grid-single .card {
+    max-width: 700px; /* Set a max-width for readability */
+    width: 100%;
+}
+
+/* Header Social Icons */
+.header-social-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spacing between icons */
+    margin-left: 15px; /* Space between nav links and icons */
+}
+
+.header-social-icons a {
+    color: var(--text-color-light);
+    font-size: 1.3rem; /* Icon size */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.header-social-icons a:hover {
+    color: var(--primary-color);
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* =============================================
+   RESPONSIVE STYLES
+   ============================================= */
+
+@media (max-width: 992px) {
+    .about-content,
+    .contact-grid {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+    }
+
+    .about-image {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        background: var(--dark-bg);
+        padding: 1rem 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        text-align: center;
+        border-top: 1px solid var(--primary-color);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        padding: 15px 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .header-social-icons {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        margin-left: 0;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* =============================================
+   ACCESSIBILITY ENHANCEMENTS
+   ============================================= */
+
+/* Custom focus style for better visibility and brand alignment */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 3px solid #D4AF37; /* YDCC Gold */
+    outline-offset: 2px;
+    transition: outline 0.1s ease-in-out;
+}
+
+/* =============================================
+   SPONSORS SECTION
+   ============================================= */
+
+.sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.sponsor-logo a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sponsor-name {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--text-color-dark);
+    transition: color 0.3s ease;
+}
+
+.sponsor-logo a:hover .sponsor-name {
+    color: var(--primary-color);
+}
+
+.sponsor-logo img {
+    max-width: 100%;
+    height: auto;
+    max-height: 80px; /* Control the max height of logos */
+    filter: grayscale(100%);
+    opacity: 0.8;
+    transition: filter 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+.sponsor-logo a:hover img {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+
+.footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color-light);
+    padding: 50px 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-column h4 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-column p,
+.footer-column ul {
+    font-size: 0.95rem;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-column ul a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #3d5a49; /* Muted Green */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-bottom .social-links a {
+    color: var(--text-color-light);
+    margin-left: 15px;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom .social-links a:hover {
+    color: var(--primary-color);
+}
+
+.contact-list-footer {
+    list-style: none;
+}
+
+.contact-list-footer li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.contact-list-footer i {
+    color: var(--primary-color);
+    margin-right: 10px;
+    margin-top: 4px;
+}
+
+.contact-list-footer a {
+    color: var(--text-color-light);
+    text-decoration: none;
+}
+
+.contact-list-footer a:hover {
+    text-decoration: underline;
+}
