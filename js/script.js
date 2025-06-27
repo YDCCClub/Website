@@ -77,4 +77,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Notification Banner
+    const banner = document.getElementById('notification-banner');
+    const closeBtn = document.getElementById('close-banner-btn');
+
+    // Check if the banner was already closed in this session
+    if (sessionStorage.getItem('bannerClosed') !== 'true') {
+        banner.style.display = 'block';
+    }
+
+    // Close the banner and save the state in sessionStorage
+    closeBtn.addEventListener('click', () => {
+        banner.style.display = 'none';
+        sessionStorage.setItem('bannerClosed', 'true');
+    });
 });
