@@ -78,18 +78,50 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Notification Banner
+    // Notification Banner Logic
     const banner = document.getElementById('notification-banner');
     const closeBtn = document.getElementById('close-banner-btn');
+    const mainContent = document.querySelector('main');
+    const initialMainPaddingTop = 85; // From CSS
 
-    // Check if the banner was already closed in this session
-    if (sessionStorage.getItem('bannerClosed') !== 'true') {
-        banner.style.display = 'block';
+    function adjustLayoutForBanner() {
+        if (!banner) return;
+        const bannerHeight = banner.offsetHeight;
+        navbar.style.top = `${bannerHeight}px`;
+        if (mainContent) {
+            mainContent.style.paddingTop = `${initialMainPaddingTop + bannerHeight}px`;
+        }
     }
 
-    // Close the banner and save the state in sessionStorage
-    closeBtn.addEventListener('click', () => {
-        banner.style.display = 'none';
-        sessionStorage.setItem('bannerClosed', 'true');
-    });
+    function resetLayoutAfterBanner() {
+        navbar.style.top = '0px';
+        if (mainContent) {
+            mainContent.style.paddingTop = `${initialMainPaddingTop}px`;
+        }
+    }
+
+    if (banner && closeBtn) {
+        const bannerText = banner.querySelector('p');
+
+        // Show banner if not closed and has text
+        if (sessionStorage.getItem('bannerClosed') !== 'true' && bannerText && bannerText.textContent.trim() !== '') {
+            banner.style.display = 'block';
+            // Use a short timeout to ensure banner has rendered and has a height
+            setTimeout(adjustLayoutForBanner, 50);
+        }
+
+        // Handle close button click
+        closeBtn.addEventListener('click', () => {
+            banner.style.display = 'none';
+            sessionStorage.setItem('bannerClosed', 'true');
+            resetLayoutAfterBanner();
+        });
+
+        // Adjust layout on resize if banner is visible
+        window.addEventListener('resize', () => {
+            if (banner.style.display === 'block') {
+                adjustLayoutForBanner();
+            }
+        });
+    }
 });

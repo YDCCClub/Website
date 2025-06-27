@@ -992,19 +992,22 @@ section#hero {
 
 /* Notification Banner */
 .notification-banner {
-    background-color: var(--secondary-color);
-    color: var(--text-color-light);
+    background-color: var(--primary-color);
+    color: var(--text-color-dark);
     text-align: center;
-    padding: 15px;
-    position: relative;
-    top: 85px; /* Adjust based on navbar height */
-    z-index: 999;
-    display: none; /* Hidden by default */
+    padding: 12px 15px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1001; /* Above navbar */
+    display: none; /* Hidden by default, shown by JS */
+    transition: top 0.3s ease;
 }
 
 .notification-banner p {
     margin: 0;
     font-size: 1rem;
+    padding: 0 40px; /* Space for close button */
 }
 
 .notification-banner .close-btn {
@@ -1012,11 +1015,20 @@ section#hero {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
-    color: var(--text-color-light);
-    font-size: 20px;
+    color: var(--text-color-dark);
+    font-size: 22px;
     cursor: pointer;
     background: none;
     border: none;
+    line-height: 1;
+}
+
+/* Responsive Banner */
+@media (max-width: 768px) {
+    .notification-banner p {
+        font-size: 0.9rem;
+        text-align: left;
+    }
 }
 a:focus,
 button:focus,
