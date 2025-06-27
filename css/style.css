@@ -1046,6 +1046,51 @@ select:focus {
 }
 
 /* =============================================
+   SERVICE AREA
+   ============================================= */
+
+.service-area-section .lead {
+    margin-bottom: 2rem;
+}
+
+.suburb-list {
+    list-style: none;
+    padding: 0;
+    column-count: 4;
+    column-gap: 2rem;
+    text-align: center;
+}
+
+.suburb-list li {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    display: inline-block;
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .suburb-list {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .suburb-list {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .suburb-list {
+        column-count: 1;
+    }
+}
+
+/* =============================================
    FOOTER
    ============================================= */
 
