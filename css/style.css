@@ -1132,6 +1132,50 @@ select:focus {
 }
 
 /* =============================================
+   QR CODES SECTION
+   ============================================= */
+
+#qr-codes {
+    background-color: var(--light-bg);
+    padding: 60px 0;
+}
+
+.qr-code-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.qr-code-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qr-code-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.qr-code-item h4 {
+    margin-bottom: 1.5rem;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+.qr-code-item img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+/* =============================================
    FOOTER
    ============================================= */
 
