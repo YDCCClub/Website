@@ -359,61 +359,47 @@
 
     <script src="js/script.js"></script>
     <script>
-        // Function to handle form submissions
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            
-            // Show loading state
-            const submitButton = document.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.textContent;
-            submitButton.textContent = 'Sending...';
-            submitButton.disabled = true;
-            
-            const formStatus = document.getElementById('form-status');
-            formStatus.innerHTML = '';
-            
-            // Get form data
-            const form = document.getElementById('consultation-form');
-            const formData = new FormData(form);
-            
-            // Convert FormData to URL-encoded string
-            const data = [...formData.entries()]
-                .map(e => encodeURIComponent(e[0]) + '=' + encodeURIComponent(e[1]))
-                .join('&');
-            
-            // Send the form data to Google Apps Script
-            fetch('https://script.google.com/macros/s/AKfycbwNQ2hou2mgNygrqjbluwNQIVzWLEMfqxcDpf6qYZMJsseSFhDGB_dPXS5411lltvHxYQ/exec', {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: data
-            })
-            .then(() => {
-                // Since the response is opaque with 'no-cors', we can't check for success.
-                // We'll assume success and show the success message.
-                formStatus.innerHTML = '<div class="success-message">Thank you for your message! We have received your inquiry and will get back to you.</div>';
-                form.reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                formStatus.innerHTML = '<div class="error-message">Sorry, there was a problem submitting your form. Please try again later or contact us directly at yerrabidcc@gmail.com</div>';
-            })
-            .finally(() => {
-                // Restore button
-                submitButton.textContent = originalButtonText;
-                submitButton.disabled = false;
-            });
-        }
+        document.getElementById('consultation-form').addEventListener('submit', function (e) {
+          e.preventDefault();
         
-        // Add event listener after DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('consultation-form');
-            if (form) {
-                form.addEventListener('submit', handleFormSubmit);
+          const formStatus = document.getElementById('form-status');
+          formStatus.textContent = 'Sending...';
+        
+          const data = {
+            topic: document.getElementById('topic').value,
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+          };
+        
+          fetch('https://script.google.com/macros/s/AKfycbxVfow1YdSBI7EuNa_kTbFyx0tsC36g6iDa3mqVpmvMOV2byItpdie7Rf8tJ4D41dRoGQ/exec', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not OK');
             }
+            return response.json();
+          })
+          .then(result => {
+            if (result.status === 'success') {
+              formStatus.textContent = 'Thank you! Your message has been sent.';
+              document.getElementById('consultation-form').reset();
+            } else {
+              formStatus.textContent = 'Error: ' + (result.message || 'Failed to send message.');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            formStatus.textContent = 'Something went wrong. Please try again later.';
+          });
         });
-    </script>
+        </script>
+        
+
 </body>
 </html>
