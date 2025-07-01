@@ -55,6 +55,26 @@
                 column-count: 1;
             }
         }
+
+        /* Responsive styles for the contact form grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Default to single column for mobile */
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .contact-form iframe {
+            border-radius: 8px; /* Optional: adds a nice touch to the iframe */
+        }
+
+        /* Switch to two columns on larger screens */
+        @media (min-width: 992px) {
+            .contact-grid {
+                /* 2fr for the form, 1fr for the contact info */
+                grid-template-columns: 2fr 1fr; 
+            }
+        }
     </style>
 
     <!-- Structured Data for SEO -->
@@ -157,7 +177,7 @@
                 </div>
                 <div class="contact-grid">
                     <div class="contact-form">
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScbfz_jdovyIdvU5YsyTXNPduX1M94dqxb8wyDKq849Xn4aCg/viewform?embedded=true" width="640" height="908" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScbfz_jdovyIdvU5YsyTXNPduX1M94dqxb8wyDKq849Xn4aCg/viewform?embedded=true" title="Contact Us Form" style="width: 100%; height: 908px; border: 0;">Loading…</iframe>
                     </div>
                     <div class="contact-info">
                         <h3>Contact Details</h3>
