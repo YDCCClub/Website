@@ -202,9 +202,16 @@ main {
 }
 
 section#hero {
-    background-image: url('../images/hero1.png');
     padding: 5rem 20px; /* Use padding to control height */
     min-height: 90vh; /* Keep for the home page */
+}
+
+.webp section#hero {
+    background-image: url('../images/hero1.webp');
+}
+
+.no-webp section#hero {
+    background-image: url('../images/hero1.png');
 }
 
 .hero-section .container {

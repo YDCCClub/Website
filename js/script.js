@@ -1,3 +1,21 @@
+// Function to check for WebP support
+function checkWebPSupport(callback) {
+    const webP = new Image();
+    webP.onload = webP.onerror = function () {
+        callback(webP.height === 2);
+    };
+    webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+}
+
+// Add 'webp' or 'no-webp' class to html element
+checkWebPSupport(function(supported) {
+    if (supported) {
+        document.documentElement.classList.add('webp');
+    } else {
+        document.documentElement.classList.add('no-webp');
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
@@ -124,4 +142,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Dynamically load Google Tag Manager script after a delay
+    setTimeout(function() {
+        const gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-1P9GBCRGLV';
+        document.head.appendChild(gtagScript);
+
+        gtagScript.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1P9GBCRGLV');
+        };
+    }, 3000); // 3-second delay
 });
