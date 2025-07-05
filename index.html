@@ -106,6 +106,24 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
 
+    <style>
+        .supporter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .supporter-item img {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .supporter-item a:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+
 
     
 </head>
@@ -173,27 +191,30 @@
                 <div class="join-info">
                     <p><i class="fas fa-user-plus"></i> New Players & Families Welcome</p>
                     <p><i class="fas fa-hands-helping"></i> Volunteers & Coaches Needed</p>
-                    <p><i class="fas fa-dollar-sign"></i> Sponsorship Packages Available</p>
+                    <p><i class="fas fa-dollar-sign"></i> Supporter Packages Available</p>
                 </div>
                 <a href="https://www.playhq.com/cricket-australia/org/yerrabi-district-cricket-club/1c9bbb97/register" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Register on PlayHQ</a>
             </div>
         </section>
 
-        <section id="sponsors" class="content-section text-center">
+        <section id="supporters" class="content-section text-center">
             <div class="container">
-                <h2>Our Sponsors</h2>
-                <p class="section-subtitle">We are proud to be supported by our generous sponsors who help make our club a success.</p>
-                <div class="sponsors-grid">
-                    <div class="sponsor-logo">
+                <h2>Our Supporters</h2>
+                <p class="section-subtitle">We are proud to be supported by our generous community partners.</p>
+                <div class="supporter-grid">
+                    <div class="supporter-item">
                         <a href="https://www.cricketact.com.au/" target="_blank" rel="noopener noreferrer">
                             <img src="images/cricket-act.svg" alt="Cricket ACT Logo">
-                            <h3 class="sponsor-name">Cricket ACT</h3>
                         </a>
                     </div>
-                    <div class="sponsor-logo">
+                    <div class="supporter-item">
                         <a href="https://www.cricketaustralia.com.au/" target="_blank" rel="noopener noreferrer">
                             <img src="images/cricket-australia-logo.svg" alt="Cricket Australia Logo">
-                            <h3 class="sponsor-name">Cricket Australia</h3>
+                        </a>
+                    </div>
+                    <div class="supporter-item">
+                        <a href="https://iamsacanberra.com.au/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/lAMSA.webp" alt="Indian Australian Multicultural Sports Association (IAMSA) Logo">
                         </a>
                     </div>
                 </div>

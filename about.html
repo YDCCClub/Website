@@ -64,6 +64,24 @@
       }]
     }
     </script>
+
+    <style>
+        .supporter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .supporter-item img {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .supporter-item a:hover img {
+            transform: scale(1.05);
+        }
+    </style>
     
 </head>
 <body>
@@ -110,6 +128,20 @@
             <div class="container">
                 <h2>About Our Yerrabi District Cricket Club IN Gungahlin</h2>
                 <p class="lead">The Yerrabi District Cricket Club (Yerrabi DCC) evolved from the initiatives of Indian Australian Multicultural Sports Association (IAMSA), Cricket enthusiast and parents who saw a rapidly-changing cricketing space around them. YDCC is a new initiative to encourage children in the age group of 5 – 15 years to participate at the stage that is appropriate to their ability level. This ensures the budding cricketers are being challenged against the players of similar abilities, which will develop their confidence and competence. Our club provide different pathways to the girls and boys of age 5– 15 years. The objective is to help kids develop the required skills in an engaged and fun manner. Together with a combined experience of over 40 years, each and every member of the club was keen to develop a unique level of skillset amongst children. We hope that through increasingly close collaboration with ACT Cricket and other cricketing bodies we can ensure even more growth of the competition’s playing numbers over the coming years.</p>
+            </div>
+        </section>
+
+        <section id="supporters" class="content-section">
+            <div class="container text-center">
+                <h2>Our Supporters</h2>
+                <p class="lead">We are grateful for the support of our community partners.</p>
+                <div class="supporter-grid">
+                    <div class="supporter-item">
+                        <a href="https://iamsacanberra.com.au/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/lAMSA.webp" alt="Indian Australian Multicultural Sports Association (IAMSA) Logo">
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
