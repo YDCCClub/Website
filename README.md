@@ -147,3 +147,40 @@ No complex build process is required. To view the website locally:
 --- 
 
 This documentation provides a clear and comprehensive overview of the Yerrabi District Cricket Club website.
+
+---
+
+## Photo Gallery Management
+
+The website features a dynamic photo gallery on `gallery.html` that is managed entirely through local files and a Python script. You do not need to edit any HTML or JavaScript directly to update the gallery.
+
+### How It Works
+
+1.  **Album Folders:** Each photo album is simply a folder located in the `images/Albums/` directory.
+2.  **Update Script:** The Python script `update_gallery.py` scans these folders and automatically generates the configuration file that the website uses to display the albums.
+3.  **Configuration File:** The script creates/updates `js/album-config.js`, which is a JavaScript file containing a list of all your albums and the paths to their images.
+
+### How to Add a New Album
+
+1.  **Create a New Folder:** Inside the `images/Albums/` directory, create a new folder. The name you give this folder will become the album's name on the website (e.g., `My New Album`).
+2.  **Add Photos:** Copy all the photos for the new album into the folder you just created.
+3.  **Run the Update Script:** Open a terminal in the project's root directory and run the following command:
+    ```sh
+    python update_gallery.py
+    ```
+
+That's it! The script will add your new album to the configuration, and it will appear on the gallery page.
+
+### How to Change an Album's Name
+
+1.  **Rename the Folder:** In the `images/Albums/` directory, simply rename the folder of the album you wish to change.
+2.  **Run the Update Script:** Run `python update_gallery.py` again to apply the name change to the website.
+
+### How to Set the Main Album Image (Thumbnail)
+
+The script automatically looks for an image named `Thumbnail` to use as the album's cover photo.
+
+1.  **Navigate to the Album Folder:** Go into the specific album's folder (e.g., `images/Albums/My New Album/`).
+2.  **Rename Your Chosen Image:** Find the photo you want to use as the cover and rename it to `Thumbnail.jpg` (or `.png`, `.jpeg`, etc.).
+    *   If you already have a file named `Thumbnail.jpg`, rename it to something else first.
+3.  **Run the Update Script:** Run `python update_gallery.py` to make the website use your new thumbnail.
