@@ -96,52 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Notification Banner Logic
-    const banner = document.getElementById('notification-banner');
-    const closeBtn = document.getElementById('close-banner-btn');
-    const mainContent = document.querySelector('main');
-    const initialMainPaddingTop = 85; // From CSS
 
-    function adjustLayoutForBanner() {
-        if (!banner) return;
-        const bannerHeight = banner.offsetHeight;
-        navbar.style.top = `${bannerHeight}px`;
-        if (mainContent) {
-            mainContent.style.paddingTop = `${initialMainPaddingTop + bannerHeight}px`;
-        }
-    }
-
-    function resetLayoutAfterBanner() {
-        navbar.style.top = '0px';
-        if (mainContent) {
-            mainContent.style.paddingTop = `${initialMainPaddingTop}px`;
-        }
-    }
-
-    if (banner && closeBtn) {
-        const bannerText = banner.querySelector('p');
-
-        // Show banner if not closed and has text
-        if (sessionStorage.getItem('bannerClosed') !== 'true' && bannerText && bannerText.textContent.trim() !== '') {
-            banner.style.display = 'block';
-            // Use a short timeout to ensure banner has rendered and has a height
-            setTimeout(adjustLayoutForBanner, 50);
-        }
-
-        // Handle close button click
-        closeBtn.addEventListener('click', () => {
-            banner.style.display = 'none';
-            sessionStorage.setItem('bannerClosed', 'true');
-            resetLayoutAfterBanner();
-        });
-
-        // Adjust layout on resize if banner is visible
-        window.addEventListener('resize', () => {
-            if (banner.style.display === 'block') {
-                adjustLayoutForBanner();
-            }
-        });
-    }
 
     // Dynamically load Google Tag Manager script after a delay
     setTimeout(function() {
