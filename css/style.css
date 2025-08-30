@@ -1625,3 +1625,208 @@ select:focus {
     margin-bottom: 20px;
     color: var(--secondary-color);
 }
+
+/* =============================================
+   SPONSORS PAGE ENHANCEMENTS (pure CSS)
+   ============================================= */
+
+/* Our Sponsors section: modern card grid */
+#our-sponsors .sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+#our-sponsors .sponsor-card {
+    background: #fff;
+    border: 1px solid #e8e6df;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#our-sponsors .sponsor-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+}
+
+#our-sponsors .sponsor-logo img {
+    max-width: 220px;
+    max-height: 100px;
+    object-fit: contain;
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+#our-sponsors .sponsor-info h3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+}
+
+/* Add a tasteful link icon before external links */
+#our-sponsors .sponsor-info a {
+    position: relative;
+    font-weight: 700;
+}
+
+#our-sponsors .sponsor-info a::before {
+    content: '\f35d'; /* external-link */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+/* Sponsorship Packages: elevate visuals without touching HTML */
+#sponsorship-packages .packages-grid {
+    align-items: stretch;
+}
+
+#sponsorship-packages .package-card {
+    position: relative;
+    border: 1px solid #e8e6df;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #ffffff 0%, #faf8f2 100%);
+}
+
+/* Subtle top accent bar */
+#sponsorship-packages .package-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    background: var(--primary-color);
+}
+
+/* Tier-specific icons and accent colors using nth-child order on the page */
+#sponsorship-packages .package-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+#sponsorship-packages .package-card h3::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+/* 1: Platinum */
+#sponsorship-packages .packages-grid .package-card:nth-child(1) h3::before { content: '\f091'; } /* trophy */
+/* 2: Gold */
+#sponsorship-packages .packages-grid .package-card:nth-child(2) h3::before { content: '\f5a2'; } /* medal */
+/* 3: Silver */
+#sponsorship-packages .packages-grid .package-card:nth-child(3) h3::before { content: '\f5a2'; opacity: 0.85; }
+/* 4: Bronze */
+#sponsorship-packages .packages-grid .package-card:nth-child(4) h3::before { content: '\f559'; } /* award */
+/* 5: Special */
+#sponsorship-packages .packages-grid .package-card:nth-child(5) h3::before { content: '\f2b5'; } /* handshake */
+
+/* Price as a soft pill */
+#sponsorship-packages .package-card .price {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(167, 139, 79, 0.12);
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+/* Decorative check icons for feature lists */
+#sponsorship-packages .package-card ul li {
+    position: relative;
+    padding-left: 30px;
+}
+
+#sponsorship-packages .package-card ul li::before {
+    content: '\f00c'; /* check */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--accent-color);
+}
+
+/* QR codes already styled; add minor alignment polish */
+#qr-codes .qr-code-item h3::before {
+    content: '\f029'; /* qrcode */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+/* Responsive tweaks for sponsors cards */
+@media (min-width: 992px) {
+    #our-sponsors .sponsor-card { padding: 2rem; }
+}
+
+/* Key Highlights styling (under Sponsorship Packages) */
+#sponsorship-packages > .container > h3:first-of-type {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    position: relative;
+}
+
+#sponsorship-packages > .container > h3:first-of-type::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Each highlight line */
+#sponsorship-packages .container p.sponsor {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e8e6df;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 0.9rem 1rem 0.9rem 2.6rem; /* left space for icon */
+    margin: 0.65rem 0;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.04);
+}
+
+#sponsorship-packages .container p.sponsor strong {
+    color: var(--secondary-color);
+}
+
+#sponsorship-packages .container p.sponsor::before {
+    content: '\f058'; /* check-circle */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-color);
+}
+
+/* Slight hover polish for interactivity */
+#sponsorship-packages .container p.sponsor:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+}
+
+@media (min-width: 992px) {
+    /* create a balanced rhythm on desktop */
+    #sponsorship-packages .container p.sponsor {
+        margin: 0.5rem auto;
+        max-width: 920px;
+    }
+}
