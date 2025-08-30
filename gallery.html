@@ -3,14 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - YDCC</title>
+    <title>Gallery | Yerrabi District Cricket Club</title>
+    <link rel="icon" type="image/png" href="images/favicon.png?v=2">
+    <meta name="description" content="Browse photo albums from Yerrabi District Cricket Club events and matches.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ydcc.com.au/gallery.html">
+    <meta property="og:title" content="Gallery | Yerrabi District Cricket Club">
+    <meta property="og:description" content="Browse photo albums from Yerrabi District Cricket Club events and matches.">
+    <meta property="og:image" content="https://www.ydcc.com.au/images/hero_about1.png">
 
     <!-- Preconnect to improve connection speed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
     <!-- Preload critical CSS files to prevent FOUC -->
     <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"></noscript>
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
 
@@ -31,9 +44,10 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="programs.html">Programs</a></li>
-                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="gallery.html" class="active" aria-current="page">Gallery</a></li>
                     <li><a href="news.html">News</a></li>
                     <li><a href="sponsors.html">Sponsors</a></li>
+                    <li><a href="supporters.html">Supporters</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <div class="header-social-icons">
@@ -62,6 +76,28 @@
                 </div>
             </div>
         </section>
+        <section id="qr-codes" class="content-section">
+            <div class="container">
+                <div class="text-center">
+                    <h2>Scan to Connect</h2>
+                    <p class="lead">Use your phone's camera to scan a QR code and visit our pages.</p>
+                </div>
+                <div class="qr-code-grid">
+                    <div class="qr-code-item">
+                        <h3>Website</h3>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.ydcc.com.au/" alt="QR Code for YDCC Website">
+                    </div>
+                    <div class="qr-code-item">
+                        <h3>Facebook</h3>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.facebook.com/YerrabiDCC/" alt="QR Code for YDCC Facebook">
+                    </div>
+                    <div class="qr-code-item">
+                        <h3>Instagram</h3>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.instagram.com/yerrabidcc/" alt="QR Code for YDCC Instagram">
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div id="gallery-modal" class="modal">
@@ -87,6 +123,7 @@
                         <li><a href="programs.html">Programs</a></li>
                         <li><a href="news.html">News</a></li>
                         <li><a href="sponsors.html">Sponsors</a></li>
+                        <li><a href="supporters.html">Supporters</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -127,6 +164,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="js/album-config.js"></script>
     <script src="js/gallery.js"></script>
+    <script src="js/banner.js" defer></script>
     <script src="js/script.js" defer></script>
 </body>
 </html>

@@ -8,6 +8,21 @@
   --text-color-light: #f9f7f2;   /* Text for dark backgrounds */
 }
 
+/* About page section spacing and typography harmonisation */
+.content-section .container h2:not(:first-of-type) {
+    margin-top: 4rem; /* Add gap between About sections */
+}
+
+.about-content {
+    margin-top: 2rem; /* Space between intro heading and content */
+}
+
+.content-section .container h2 + .about-features,
+.content-section .container h2 + .about-content,
+.content-section .container h2 + p {
+    margin-top: 1.5rem; /* Consistent gap under section headings */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -40,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000;
+    z-index: 1050; /* Ensure navbar stays above page content */
     transition: padding 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -140,15 +155,26 @@ main {
     }
 
     .header-social-icons {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        margin-left: 0; /* Reset margin for absolute positioning */
+        position: static;
+        left: auto;
+        top: auto;
+        transform: none;
+        margin-left: auto; /* Push icons to sit before the hamburger */
     }
 
     .navbar .container {
         justify-content: space-between;
+        flex-wrap: nowrap; /* Keep logo, icons, hamburger on one line */
+    }
+
+    /* Improve visibility/spacing for social icons on mobile */
+    .header-social-icons {
+        margin-right: 12px; /* Space before hamburger */
+        gap: 16px;
+    }
+
+    .header-social-icons a {
+        font-size: 1.6rem; /* Slightly larger on mobile */
     }
 
     /* This combines all mobile button stacking rules for consistency */
@@ -327,20 +353,6 @@ section#hero {
     max-width: 700px;
     margin: 0 auto 3.5rem auto;
     color: var(--text-color-dark);
-
-    /* About Section */
-    .about-content {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        text-align: left;
-    }
-
-    .about-text {
-        flex: 2;
-    }
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
 }
 
 .card h3 {
@@ -1040,7 +1052,7 @@ section#hero {
 /* About Us Page Styles */
 .about-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2.5rem;
     margin-top: 4rem;
     text-align: center;
@@ -1053,8 +1065,47 @@ section#hero {
 }
 
 .feature-item h3 {
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
     color: var(--secondary-color);
+    font-weight: 700; /* Match site subheading weight */
+    font-size: 1.25rem; /* Keep consistent with design scale */
+}
+
+.feature-item p {
+    max-width: 420px;
+    margin: 0 auto;
+    color: var(--text-color-dark);
+}
+
+/* Balance the features grid to avoid 3+1 wrapping on desktop */
+@media (min-width: 992px) {
+    .about-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1400px) {
+    .about-features {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Programs Page Styles */
+.pathway-option h3 a,
+.pathway-option h3 a:visited {
+    color: inherit; /* keep previous heading color */
+    text-decoration: none; /* keep previous heading style */
+    font-weight: inherit; /* use h3 weight */
+}
+
+.pathway-option h3 a:hover,
+.pathway-option h3 a:focus {
+    text-decoration: none; /* no underline on hover/focus to preserve style */
+}
+
+.pathway-option h3 a:focus-visible {
+    outline: 2px dashed var(--primary-color);
+    outline-offset: 3px;
 }
 
 /* News Page Styles */
@@ -1116,7 +1167,7 @@ section#hero {
 }
 
 .header-social-icons a {
-    color: var(--text-color-light);
+    color: var(--text-color-dark);
     font-size: 1.3rem; /* Icon size */
     transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -1196,7 +1247,7 @@ section#hero {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1001; /* Above navbar */
+    z-index: 1100; /* Above navbar */
     display: none; /* Hidden by default, shown by JS */
     transition: top 0.3s ease;
 }
@@ -1227,6 +1278,7 @@ section#hero {
         text-align: left;
     }
 }
+
 a:focus,
 button:focus,
 input:focus,
@@ -1281,6 +1333,33 @@ select:focus {
     filter: grayscale(0);
     opacity: 1;
     transform: scale(1.05);
+}
+
+/* =============================================
+   SUPPORTERS SECTION
+   ============================================= */
+
+.supporter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.supporter-item img {
+    max-width: 100%;
+    height: auto;
+    max-height: 80px;
+    transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+    filter: grayscale(100%);
+    opacity: 0.85;
+}
+
+.supporter-item a:hover img {
+    transform: scale(1.05);
+    filter: grayscale(0);
+    opacity: 1;
 }
 
 /* =============================================
@@ -1359,7 +1438,7 @@ select:focus {
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
-.qr-code-item h4 {
+.qr-code-item h3 {
     margin-bottom: 1.5rem;
     color: var(--secondary-color);
     font-size: 1.2rem;
@@ -1496,7 +1575,7 @@ select:focus {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1001; /* Sit on top */
+    z-index: 1200; /* Sit on top of banner and navbar */
     left: 0;
     top: 0;
     width: 100%;

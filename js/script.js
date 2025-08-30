@@ -20,6 +20,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
     const navbar = document.querySelector('.navbar');
+    const mainEl = document.querySelector('main');
+    const banner = document.querySelector('.notification-banner');
+
+    // Ensure content is never hidden behind the fixed navbar (and banner if visible)
+    function updateOffsets() {
+        const navH = navbar ? navbar.offsetHeight : 0;
+        let bannerH = 0;
+        if (banner) {
+            const bannerStyles = window.getComputedStyle(banner);
+            const isVisible = bannerStyles.display !== 'none' && bannerStyles.visibility !== 'hidden';
+            bannerH = isVisible ? banner.offsetHeight : 0;
+        }
+        const total = navH + bannerH;
+        if (mainEl) {
+            mainEl.style.paddingTop = total + 'px';
+        }
+    }
 
     // Toggle mobile nav
     hamburger.addEventListener('click', () => {
@@ -49,7 +66,20 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             navbar.classList.remove('scrolled');
         }
+        // Recompute offsets when navbar height may change due to scrolled class
+        updateOffsets();
     });
+
+    // Recalculate on load and when viewport size changes
+    updateOffsets();
+    window.addEventListener('resize', updateOffsets);
+
+    // Observe banner visibility changes (if banner is toggled via JS)
+    if (banner) {
+        const mo = new MutationObserver(updateOffsets);
+        mo.observe(banner, { attributes: true, attributeFilter: ['style', 'class'] });
+        window.addEventListener('load', updateOffsets);
+    }
 
     // Intersection Observer for animations
     const animatedElements = document.querySelectorAll('.anim-slide-up');

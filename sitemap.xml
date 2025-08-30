@@ -31,4 +31,20 @@
   <priority>0.80</priority>
 </url>
 
+<url>
+  <loc>https://www.ydcc.com.au/gallery.html</loc>
+  <lastmod>2025-06-27</lastmod>
+  <priority>0.80</priority>
+ </url>
+<url>
+  <loc>https://www.ydcc.com.au/sponsors.html</loc>
+  <lastmod>2025-06-27</lastmod>
+  <priority>0.80</priority>
+ </url>
+<url>
+  <loc>https://www.ydcc.com.au/supporters.html</loc>
+  <lastmod>2025-06-27</lastmod>
+  <priority>0.80</priority>
+ </url>
+
 </urlset>

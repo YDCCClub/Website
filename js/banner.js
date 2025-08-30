@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Banner configuration
     const bannerMessage = '<b>Under Construction:</b> Our website is currently under construction. Stay tuned for updates!';
 
-    // Check if the banner was already closed in this session
-    if (sessionStorage.getItem('bannerClosed') === 'true') {
+    // Check if the banner was already closed (persisted across sessions)
+    if (localStorage.getItem('bannerClosed') === 'true') {
         return;
     }
 
@@ -32,7 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'relative',
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        right: '0',
+        width: '100%',
+        zIndex: '1100',
         fontSize: '1em' // Restoring original font size
     });
 
@@ -64,7 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const bannerHeight = banner.offsetHeight;
         navbar.style.top = `${bannerHeight}px`;
         if (mainContent) {
-            mainContent.style.paddingTop = `${initialMainPaddingTop + bannerHeight}px`;
+            // Keep main padding constant to avoid extra gap between header and hero
+            mainContent.style.paddingTop = `${initialMainPaddingTop}px`;
         }
     }
 
@@ -83,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle close button click
     closeBtn.addEventListener('click', () => {
         banner.style.display = 'none';
-        sessionStorage.setItem('bannerClosed', 'true');
+        localStorage.setItem('bannerClosed', 'true');
         resetLayoutAfterBanner();
     });
 
