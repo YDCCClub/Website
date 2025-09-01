@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Banner configuration
-    const bannerMessage = '<b>Under Construction:</b> Our website is currently under construction. Stay tuned for updates!';
+    const bannerMessage = 'Registrations for Cricket Blast and Junior Cricket are open';
 
     // Check if the banner was already closed (persisted across sessions)
     if (localStorage.getItem('bannerClosed') === 'true') {
