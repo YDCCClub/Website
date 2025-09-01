@@ -63,6 +63,32 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     transition: padding 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative; /* Create stacking context so menu can sit above hero */
+    z-index: 1060; /* Higher than hero overlays and consistent with header container */
+}
+
+/* Remove unintended spacing between header and hero across pages */
+header, .navbar, main, .hero-section, section#hero {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+/* Ensure no extra gap appears after sticky header container */
+#header-container {
+    margin-bottom: 0;
+}
+/* Make header a stacking context above page content on all pages */
+header {
+    position: relative;
+    z-index: 1100;
+}
+/* Defense: ensure main never adds top padding from UA or prior scripts */
+main {
+    padding-top: 0 !important;
+}
+/* Make sure the junction between header and main has no margin */
+#header-container + main,
+header + main {
+    margin-top: 0 !important;
 }
 
 .navbar.scrolled {
@@ -136,14 +162,6 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
-main {
-    padding-top: 0; /* Let the sticky header handle the spacing */
-}
-
-/* When banner is visible, add padding to main to push content down */
-.banner-visible main {
-    padding-top: 45px; /* Approximate height of banner */
-}
 
 /* Responsive Styles */
 @media (max-width: 768px) {
@@ -154,6 +172,10 @@ main {
         text-align: center;
         background: var(--dark-bg);
         padding: 20px 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 2000; /* Ensure menu overlays hero imagery */
     }
 
     .nav-links.active {
@@ -214,9 +236,10 @@ main {
     text-align: center;
     color: var(--light-text);
     position: relative;
-    padding: 5rem 20px;
+    padding: 0 20px 5rem; /* Remove top padding so hero starts under header */
+    overflow: hidden; /* Prevent child top margins from collapsing outside */
+    z-index: 0; /* Ensure hero is below header/nav stack */
     box-sizing: border-box;
-    display: flow-root; /* The modern way to create a BFC and contain all children */
 }
 
 .page-content {
@@ -238,8 +261,11 @@ main {
 }
 
 section#hero {
-    padding: 5rem 20px; /* Use padding to control height */
+    padding: 0 20px 5rem;
     min-height: 90vh; /* Keep for the home page */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .webp section#hero {
@@ -253,10 +279,12 @@ section#hero {
 .hero-section .container {
     position: relative;
     z-index: 2; /* This ensures the hero content is above the ::before pseudo-element */
+    padding-top: 4rem; /* Maintain content spacing without creating external gap */
 }
 
 .hero-section h1 {
     font-size: 4.5rem;
+    margin-top: 0; /* Avoid margin-collapsing creating a gap above hero */
     margin-bottom: 1rem;
     color: var(--text-color-light);
     font-weight: 900;
@@ -1279,11 +1307,12 @@ section#hero {
         flex-direction: column;
         background: var(--dark-bg);
         padding: 1rem 0;
-        position: absolute;
+        position: absolute; /* ensure dropdown overlays hero */
         top: 100%;
         left: 0;
         text-align: center;
         border-top: 1px solid var(--primary-color);
+        z-index: 2000; /* above hero and overlays */
     }
 
     .nav-links.active {
@@ -1348,24 +1377,6 @@ section#hero {
     right: 15px;
 }
 
-.notification-banner p {
-    margin: 0;
-    font-size: 1rem;
-    padding: 0 40px; /* Space for close button */
-}
-
-.notification-banner .close-btn {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    color: var(--text-color-dark);
-    font-size: 22px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    line-height: 1;
-}
 
 /* Responsive Banner */
 @media (max-width: 768px) {
