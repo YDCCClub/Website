@@ -38,6 +38,14 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+#header-container {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+    width: 100%;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-weight: 900;
 }
@@ -52,10 +60,7 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--light-bg);
     color: var(--text-color-dark);
     padding: 1rem 0;
-    position: fixed;
     width: 100%;
-    top: 0;
-    z-index: 1050; /* Ensure navbar stays above page content */
     transition: padding 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -132,7 +137,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 main {
-    padding-top: 85px; /* Adjust for fixed navbar height */
+    padding-top: 0; /* Let the sticky header handle the spacing */
+}
+
+/* When banner is visible, add padding to main to push content down */
+.banner-visible main {
+    padding-top: 45px; /* Approximate height of banner */
 }
 
 /* Responsive Styles */
@@ -1077,6 +1087,75 @@ section#hero {
     color: var(--text-color-dark);
 }
 
+/* Document Grid styles */
+.document-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+/* On larger screens, switch to a 2-column grid to ensure balance */
+@media (min-width: 768px) {
+    .document-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.document-item a {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-color-dark);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    font-weight: 600;
+}
+
+.document-item a:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    color: var(--primary-color);
+}
+
+.document-item i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-right: 1rem;
+    width: 30px; /* Ensure consistent icon alignment */
+    text-align: center;
+}
+
+/* Styled list for achievements */
+.achievements-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1.5rem;
+}
+
+.achievements-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.75rem; /* Tighter spacing */
+    font-size: 1rem; /* Consistent with body text */
+    line-height: 1.6;
+    color: var(--text-color-dark);
+}
+
+.achievements-list li::before {
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-right: 0.75rem; /* Space between icon and text */
+    margin-top: 0.2rem; /* Fine-tune vertical alignment */
+    font-size: 0.9rem;
+}
+
 /* Balance the features grid to avoid 3+1 wrapping on desktop */
 @media (min-width: 992px) {
     .about-features {
@@ -1240,16 +1319,33 @@ section#hero {
 
 /* Notification Banner */
 .notification-banner {
-    background-color: var(--primary-color);
-    color: var(--text-color-dark);
+    background-color: #ffcc00; /* YDCC Gold */
+    color: #000;
+    padding: 12px 20px;
     text-align: center;
-    padding: 12px 15px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1100; /* Above navbar */
-    display: none; /* Hidden by default, shown by JS */
-    transition: top 0.3s ease;
+    display: none; /* Initially hidden, shown by JS */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-weight: 700;
+}
+
+.notification-banner p {
+    margin: 0;
+    padding-right: 25px; /* Space for the close button */
+}
+
+.notification-banner .close-btn {
+    background: transparent;
+    border: none;
+    color: #000;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 5px;
+    position: absolute;
+    right: 15px;
 }
 
 .notification-banner p {

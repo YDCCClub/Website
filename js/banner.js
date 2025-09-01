@@ -1,102 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Banner configuration
-    const bannerMessage = 'Registrations for Cricket Blast and Junior Cricket are open';
+    const banner = document.getElementById('notification-banner');
+    const closeBtn = document.getElementById('close-banner-btn');
+    const body = document.body;
 
-    // Check if the banner was already closed (persisted across sessions)
-    if (localStorage.getItem('bannerClosed') === 'true') {
+    // If banner doesn't exist or was closed this session, do nothing.
+    if (!banner || sessionStorage.getItem('bannerClosed') === 'true') {
+        // Ensure the class is removed if the banner is not shown on page load
+        if (body.classList.contains('banner-visible')) {
+            body.classList.remove('banner-visible');
+        }
         return;
     }
 
-    // --- Create Banner Element ---
-    const banner = document.createElement('div');
-    banner.id = 'notification-banner';
-    banner.className = 'notification-banner';
+    // Show the banner and adjust layout.
+    banner.style.display = 'flex';
+    body.classList.add('banner-visible');
 
-    const paragraph = document.createElement('p');
-    paragraph.innerHTML = bannerMessage;
-    banner.appendChild(paragraph);
-
-    const closeBtn = document.createElement('button');
-    closeBtn.id = 'close-banner-btn';
-    closeBtn.className = 'close-btn';
-    closeBtn.setAttribute('aria-label', 'Close banner');
-    closeBtn.innerHTML = '&times;';
-    banner.appendChild(closeBtn);
-
-    // --- Apply Styles --- 
-    Object.assign(banner.style, {
-        backgroundColor: '#ffcc00', // Original yellow
-        color: '#000',
-        padding: '10px 20px',
-        textAlign: 'center',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        right: '0',
-        width: '100%',
-        zIndex: '1100',
-        fontSize: '1em' // Restoring original font size
-    });
-
-    Object.assign(paragraph.style, {
-        margin: '0',
-        paddingRight: '20px' // Space for the close button
-    });
-
-    Object.assign(closeBtn.style, {
-        background: 'transparent',
-        border: 'none',
-        color: '#000',
-        fontSize: '2rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        lineHeight: '1'
-    });
-
-    // --- Add banner to the page ---
-    document.body.insertBefore(banner, document.body.firstChild);
-
-    // --- Logic to prevent header overlap ---
-    const navbar = document.querySelector('.navbar');
-    const mainContent = document.querySelector('main');
-    const initialMainPaddingTop = 85; // From original CSS
-
-    function adjustLayoutForBanner() {
-        if (!banner || !navbar) return;
-        const bannerHeight = banner.offsetHeight;
-        navbar.style.top = `${bannerHeight}px`;
-        if (mainContent) {
-            // Keep main padding constant to avoid extra gap between header and hero
-            mainContent.style.paddingTop = `${initialMainPaddingTop}px`;
-        }
+    // Handle the close button click.
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            banner.style.display = 'none';
+            body.classList.remove('banner-visible');
+            sessionStorage.setItem('bannerClosed', 'true');
+        });
     }
-
-    function resetLayoutAfterBanner() {
-        if (!navbar) return;
-        navbar.style.top = '0px';
-        if (mainContent) {
-            mainContent.style.paddingTop = `${initialMainPaddingTop}px`;
-        }
-    }
-
-    // Adjust layout once banner is visible
-    // Use a short timeout to ensure banner has rendered and has a height
-    setTimeout(adjustLayoutForBanner, 50);
-
-    // Handle close button click
-    closeBtn.addEventListener('click', () => {
-        banner.style.display = 'none';
-        localStorage.setItem('bannerClosed', 'true');
-        resetLayoutAfterBanner();
-    });
-
-    // Adjust layout on resize if banner is visible
-    window.addEventListener('resize', () => {
-        if (banner.style.display !== 'none') {
-            adjustLayoutForBanner();
-        }
-    });
 });
