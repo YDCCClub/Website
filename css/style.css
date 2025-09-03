@@ -551,9 +551,23 @@ section#hero {
 /* Sponsors Grid Section */
 .sponsors-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+    align-items: stretch; /* Make all tiles in a row equal height */
+    /* Layer sizing for uniform tiles */
+    --sponsor-logo-w: 180px;
+    --sponsor-logo-h: 110px;
+    --sponsor-title-h: 60px; /* ~2 lines */
+    --sponsor-desc-h: 120px; /* ~4-5 lines */
+    --sponsor-links-h: 56px; /* single row links */
+}
+
+/* On larger screens, switch to two columns for readability */
+@media (min-width: 992px) {
+    .sponsors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .sponsor-card {
@@ -565,34 +579,141 @@ section#hero {
     padding: 2rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     text-align: center;
+    height: 100%;      /* Fill the grid row height */
+}
+
+.sponsor-logo {
+    width: var(--sponsor-logo-w);
+    height: var(--sponsor-logo-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex: 0 0 auto;
 }
 
 .sponsor-logo img {
-    max-width: 150px;
-    height: auto;
-    margin-bottom: 1.5rem;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .sponsor-info h3 {
     color: var(--secondary-color);
-    font-size: 1.5rem;
+    font-size: 1.35rem; /* Slightly smaller to prevent awkward wrapping */
     margin-bottom: 0.5rem;
+    line-height: 1.2; /* Tighter heading for fewer wrap lines */
+    height: var(--sponsor-title-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Keep sponsor name links visually identical to headings */
+.sponsor-info h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+.sponsor-info h3 a:hover,
+.sponsor-info h3 a:focus {
+    color: inherit;
+    text-decoration: none;
 }
 
 .sponsor-info p {
     margin-bottom: 0.5rem;
 }
 
-@media (min-width: 768px) {
-    .sponsor-card {
-        flex-direction: row;
-        text-align: left;
-    }
+.sponsor-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
 
-    .sponsor-logo {
-        margin-right: 2rem;
-        margin-bottom: 0;
+/* Description layer with fixed height and graceful truncation */
+.sponsor-desc {
+    height: var(--sponsor-desc-h);
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+/* Links layer: website and socials grouped */
+.sponsor-links {
+    height: var(--sponsor-links-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sponsor-links p { margin: 0; }
+.sponsor-social { display: inline-flex; gap: 10px; }
+
+/* Icon-only links */
+.sponsor-links .sponsor-social a,
+.sponsor-links a {
+    color: var(--text-color-dark);
+    font-size: 1.25rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-color: transparent !important;
+    text-decoration-style: solid !important;
+    text-underline-offset: 0 !important;
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none;
+    background: transparent;
+}
+
+.sponsor-links .sponsor-social a:hover,
+.sponsor-links .sponsor-social a:focus,
+.sponsor-links a:hover,
+.sponsor-links a:focus {
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+/* Normalize icon rendering to avoid baseline artifacts */
+.sponsor-links i {
+    display: block;
+    line-height: 1;
+}
+
+/* Remove any global external-link pseudo icons within sponsor links */
+.sponsor-links a::before,
+.sponsor-links a::after {
+    content: none !important;
+}
+
+/* Also neutralize the sponsors section's external-link decoration for all sponsor links */
+#our-sponsors .sponsor-info a::before {
+    content: none !important;
+}
+
+/* Normalize anchor style so icons don't get extra weight/offsets */
+.sponsor-links a {
+    font-weight: 400 !important;
+    position: static !important;
+}
+
+@media (min-width: 768px) {
+    /* Keep stacked layout on desktop as requested */
+    .sponsor-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
     }
+    .sponsor-logo { margin-bottom: 1rem; }
 }
 
 .faq-question:focus-visible {
