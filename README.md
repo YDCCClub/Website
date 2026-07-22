@@ -40,7 +40,6 @@ The project uses a straightforward, easy-to-navigate file structure:
 ├── contact.html
 ├── gallery.html
 ├── index.html          # Homepage
-├── news.html
 ├── programs.html
 ├── sponsors.html
 ├── supporters.html

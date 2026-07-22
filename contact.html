@@ -41,10 +41,10 @@
             column-gap: 20px;
         }
 
-        .suburb-list li {
-            padding-bottom: 10px;
-            break-inside: avoid-column;
-        }
+            .suburb-list li {
+                padding-bottom: 10px;
+                break-inside: avoid-column;
+            }
 
         @media (max-width: 768px) {
             .suburb-list {
@@ -74,68 +74,69 @@
         @media (min-width: 992px) {
             .contact-grid {
                 /* 2fr for the form, 1fr for the contact info */
-                grid-template-columns: 2fr 1fr; 
+                grid-template-columns: 2fr 1fr;
             }
         }
     </style>
 
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
-    [
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [{
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.ydcc.com.au/index.html"
-        },{
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Contact Us",
-          "item": "https://www.ydcc.com.au/contact.html"
-        }]
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "SportsClub",
-        "name": "Yerrabi District Cricket Club",
-        "alternateName": "YDCC",
-        "url": "https://www.ydcc.com.au",
-        "logo": "https://www.ydcc.com.au/images/logo1.png",
-        "sport": "Cricket",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Trevor Gibson Way",
-          "addressLocality": "Taylor",
-          "addressRegion": "ACT",
-          "postalCode": "2914",
-          "addressCountry": "AU"
-        },
-        "sameAs": [
-          "https://www.facebook.com/YerrabiDCC/",
-          "https://www.instagram.com/yerrabidcc/"
+        [
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.ydcc.com.au/index.html"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Contact Us",
+              "item": "https://www.ydcc.com.au/contact.html"
+            }]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "SportsClub",
+            "name": "Yerrabi District Cricket Club",
+            "alternateName": "YDCC",
+            "url": "https://www.ydcc.com.au",
+            "logo": "https://www.ydcc.com.au/images/logo1.png",
+            "sport": "Cricket",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Trevor Gibson Way",
+              "addressLocality": "Taylor",
+              "addressRegion": "ACT",
+              "postalCode": "2914",
+              "addressCountry": "AU"
+            },
+            "sameAs": [
+              "https://www.facebook.com/YerrabiDCC/",
+              "https://www.instagram.com/yerrabidcc/"
+            ]
+          }
         ]
-      }
-    ]
     </script>
-    
+
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="container">
-                <a href="index.html" class="logo"><picture>
-                    <source srcset="images/logo1.png" type="image/png">
-                    <img src="images/logo1.png" alt="Yerrabi District Cricket Club Logo">
-                </picture></a>
+                <a href="index.html" class="logo">
+                    <picture>
+                        <source srcset="images/logo1.png" type="image/png">
+                        <img src="images/logo1.png" alt="Yerrabi District Cricket Club Logo">
+                    </picture>
+                </a>
                 <ul class="nav-links" id="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="news.html">News</a></li>
                     <li><a href="sponsors.html">Sponsors</a></li>
                     <li><a href="supporters.html">Supporters</a></li>
                     <li><a href="contact.html" class="active">Contact</a></li>
@@ -217,7 +218,7 @@
                     <p class="lead">Taylor 1 Sportsground is located at Trevor Gibson Wy in Gungahlin, Australian Capital Territory 2914.</p>
                 </div>
                 <div class="map-container">
-                    <iframe src="https://maps.google.com/maps?q=Taylor%201%20Sportsground%2C%20Trevor%20Gibson%20Wy%2C%20Gungahlin%2C%20ACT%202914&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=Taylor%201%20Sportsground%2C%20Trevor%20Gibson%20Wy%2C%20Gungahlin%2C%20ACT%202914&t=&z=15&ie=UTF8&iwloc=&output=embed" width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>
@@ -240,7 +241,7 @@
                                 <li><strong>Complete the Form:</strong> Fill in the required details for the player. You can register multiple children under a single parent account.</li>
                                 <li><strong>Make Payment:</strong> Follow the prompts to complete the payment securely online.</li>
                             </ol>
-                                                        <p>If you have any trouble, please don't hesitate to reach out to us at <a href="mailto:yerrabidcc@gmail.com">yerrabidcc@gmail.com</a>.</p>
+                            <p>If you have any trouble, please don't hesitate to reach out to us at <a href="mailto:yerrabidcc@gmail.com">yerrabidcc@gmail.com</a>.</p>
                         </div>
                     </div>
                     <div class="faq-item">
@@ -252,7 +253,7 @@
                     <div class="faq-item">
                         <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">How can I get involved as a volunteer?</button>
                         <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-question-3">
-                                                        <p>Our club relies on volunteers to help with coaching, managing teams, scoring, and organizing events. If you're interested in volunteering, please send an email to us at <a href="mailto:yerrabidcc@gmail.com">yerrabidcc@gmail.com</a>. We'd love to have you on board!</p>
+                            <p>Our club relies on volunteers to help with coaching, managing teams, scoring, and organizing events. If you're interested in volunteering, please send an email to us at <a href="mailto:yerrabidcc@gmail.com">yerrabidcc@gmail.com</a>. We'd love to have you on board!</p>
                         </div>
                     </div>
                 </div>
@@ -281,7 +282,7 @@
                 </div>
             </div>
         </section>
-
+    </main>
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -295,7 +296,6 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="programs.html">Programs</a></li>
-                        <li><a href="news.html">News</a></li>
                         <li><a href="sponsors.html">Sponsors</a></li>
                         <li><a href="supporters.html">Supporters</a></li>
                         <li><a href="contact.html">Contact</a></li>
